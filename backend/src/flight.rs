@@ -30,6 +30,7 @@ impl Flight {
     }
 
     pub fn flight_length(&self) -> u128 {
+        // number of seconds
         self.arrival_time - self.departure_time
     }
 
@@ -41,10 +42,12 @@ impl Flight {
         if !self.contains_passenger(user_id) {
             return None;
         }
-        mission_control.fetch_user(user_id)
+        mission_control.users
+            .get(&user_id)
+            .map(|u| u.clone())
     }
 
-    pub fn passenger_status(&self, user_id: u128, mission_control: &MissionControl) -> Option<PassengerStatus> {
+    pub fn passenger_status(&self, user_id: u128) -> Option<PassengerStatus> {
         if !self.contains_passenger(user_id) {
             return None;
         }

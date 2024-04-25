@@ -14,8 +14,8 @@ impl Country {
         control.airports
             .clone()
             .iter()
-            .filter(|a| a.country_id == self.id)
-            .map(|x| x.clone())
+            .filter(|(_, a)| a.country_id == self.id)
+            .map(|(_, a)| a.clone())
             .collect::<Vec<Airport>>()
     }
 
@@ -24,8 +24,8 @@ impl Country {
         control.airports
             .clone()
             .iter()
-            .filter(|a| (a.country_id == self.id) && a.abroad)
-            .map(|x| x.clone())
+            .filter(|(_, a)| (a.country_id == self.id) && a.abroad)
+            .map(|(_, a)| a.clone())
             .collect::<Vec<Airport>>()
     }
 }

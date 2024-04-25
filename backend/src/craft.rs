@@ -12,8 +12,8 @@ impl Craft {
     pub fn current_flight(&self, mission_control: &MissionControl) -> Option<Flight> {
         mission_control.flights
             .iter()
-            .filter(|f| f.craft_id == self.id)
-            .map(|f| f.clone())
+            .filter(|(_, f)| f.craft_id == self.id)
+            .map(|(_, f)| f.clone())
             .next()
     }
 }
